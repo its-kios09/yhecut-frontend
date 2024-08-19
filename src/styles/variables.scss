@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+$Josefin: "Josefin Sans", sans-serif;
+$red: #c31d29;
+$blue: #007aff;
+$white: #ffffff;
+
+$spacing-md: 16px;
+$spacing-lg: 32px;
+
+$borderRadius: 12px;
+
+$headerHeight: 100px;
+
+@mixin brealpoint($point) {
+  @if $point == md {
+    @media (min-width: 48em) {
+      @content;
+    }
+  }
+}
