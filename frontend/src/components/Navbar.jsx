@@ -11,23 +11,25 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className="relative flex items-center justify-between py-5 font-medium">
-      <img src={logo} className="w-20" alt="Logo" />
+    <div className="relative flex items-center justify-between py-5 font-medium font-josefin">
+      <Link to="/">
+        <img src={logo} className="w-20" alt="Logo" />
+      </Link>
       <ul className="hidden sm:flex gap-5 text-sm text-blue">
         <NavLink to="/" className="flex flex-col items-center gap-1">
-          <p>HOME</p>
+          <p className="font-josefin">HOME</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-blue hidden" />
         </NavLink>
         <NavLink to="/about" className="flex flex-col items-center gap-1">
-          <p>ABOUT</p>
+          <p className="font-josefin"> ABOUT</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-blue hidden" />
         </NavLink>
         <NavLink to="/products" className="flex flex-col items-center gap-1">
-          <p>PRODUCTS</p>
+          <p className="font-josefin">PRODUCTS</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-blue hidden" />
         </NavLink>
         <NavLink to="/contact" className="flex flex-col items-center gap-1">
-          <p>CONTACT</p>
+          <p className="font-josefin">CONTACT</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-blue hidden" />
         </NavLink>
       </ul>
@@ -35,14 +37,15 @@ const Navbar = () => {
         <img src={search} className="w-5 cursor-pointer" alt="search" />
         <div className="group relative">
           <img className="w-5 cursor-pointer" src={profile} alt="profile" />
-          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-blue rounded">
+          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-50">
+            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-blue rounded shadow-lg">
               <p className="cursor-pointer hover:text-black">My Profile</p>
               <p className="cursor-pointer hover:text-black">Orders</p>
               <p className="cursor-pointer hover:text-black">LogOut</p>
             </div>
           </div>
         </div>
+
         <Link to="/cart" className="relative">
           <img src={cart} className="w-5 min-w-5 cursor-pointer" alt="cart" />
           <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-blue text-black aspect-square rounded-full text-[10px]">
@@ -68,7 +71,7 @@ const Navbar = () => {
             onClick={() => setVisible(false)}
           >
             <img className="h-4 rotate-180" src={back} alt="back-button" />
-            <p>Back</p>
+            <p className="text-black cursor-pointer">Back</p>
           </div>
           <div className="flex flex-col gap-5 p-5">
             <NavLink

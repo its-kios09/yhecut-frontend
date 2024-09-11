@@ -9,6 +9,9 @@ export default {
         blue: "#0098da",
         white: "#fefefe",
       },
+      fontFamily: {
+        josefin: ['"Josefin Sans"', "sans-serif"],
+      },
     },
   },
   plugins: [],
