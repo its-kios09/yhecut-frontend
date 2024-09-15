@@ -777,7 +777,7 @@ export const products = [
   },
   {
     _id: "7ee3e1b0-e7f3-443b-9b6e-b597abba9c78",
-    name: "BAckdrop Banners",
+    name: "Backdrop Banners",
     description:
       "Transform any event with our online backdrop banners! Elevate your brand’s presence with eye-catching designs, high-quality printing, and customizable options. Perfect for trade shows, weddings, and corporate events, our banners create a stunning backdrop for photo opportunities and brand messaging. Easy to order and quick to set up, these backdrop banners add a touch of professionalism to any occasion. Make a lasting impression online with our backdrop banners that effortlessly blend style, durability, and customization to suit your unique needs.",
     price: 27000,
