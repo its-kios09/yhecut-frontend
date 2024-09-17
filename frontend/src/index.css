@@ -10,3 +10,7 @@ a.active hr {
 body {
   @apply font-josefin;
 }
+
+::-webkit-scrollbar{
+  display: none;
+}

@@ -3,6 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import dropdown from "../assets/dropdown_icon.png";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
+import { formatPrice } from '../utils/utils';
 
 const Products = () => {
   const { products, search, showSearch } = useContext(ShopContext);
@@ -143,7 +144,7 @@ const Products = () => {
               key={index}
               name={item.name}
               id={item._id}
-              price={item.price}
+              price={formatPrice(item.price)}
               image={item.image}
             />
           ))}

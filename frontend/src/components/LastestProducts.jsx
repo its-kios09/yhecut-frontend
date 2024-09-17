@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import ProductItem from "./ProductItem";
 import Title from "./Title";
+import { formatPrice } from '../utils/utils';
 
 const LastestProducts = () => {
   const { products } = useContext(ShopContext);
@@ -29,7 +30,7 @@ const LastestProducts = () => {
             id={item._id}
             image={item.image}
             name={item.name}
-            price={item.price}
+            price={formatPrice(item.price)}
           />
         ))}
       </div>
