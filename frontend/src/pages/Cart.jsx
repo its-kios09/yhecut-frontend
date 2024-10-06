@@ -3,29 +3,31 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { formatPrice } from "../utils/utils";
 import deleteIcon from "../assets/bin_icon.png";
+import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
   const { products, currency, cartItems, updateQuantity } =
     useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
- useEffect(() => {
-   const tempData = [];
+  useEffect(() => {
+    const tempData = [];
 
-   Object.entries(cartItems).forEach(([itemId, sizes]) => {
-     Object.entries(sizes).forEach(([size, quantity]) => {
-       if (quantity > 0) {
-         tempData.push({
-           _id: itemId,
-           size: size,
-           quantity: quantity,
-         });
-       }
-     });
-   });
+    Object.entries(cartItems).forEach(([itemId, sizes]) => {
+      Object.entries(sizes).forEach(([size, quantity]) => {
+        if (quantity > 0) {
+          tempData.push({
+            _id: itemId,
+            size: size,
+            quantity: quantity,
+          });
+        }
+      });
+    });
 
-   setCartData(tempData);
- }, [cartItems]);
+    setCartData(tempData);
+  }, [cartItems]);
+
   return (
     <div className="border-t pt-14">
       <div className="text-2xl mb-3">
@@ -68,32 +70,40 @@ const Cart = () => {
                   type="number"
                   min={1}
                   defaultValue={item.quantity}
-                  onChange={(e)=>{
-                    e.target.value === '' || e.target.value ==='0' ? null : updateQuantity(item._id, item.size, Number(e.target.value))
+                  onChange={(e) => {
+                    e.target.value === "" || e.target.value === "0"
+                      ? null
+                      : updateQuantity(
+                          item._id,
+                          item.size,
+                          Number(e.target.value)
+                        );
                   }}
                 />
                 <img
                   className="w-4 mr-4 sm:w-5 cursor-pointer"
                   src={deleteIcon}
+                  alt="Delete item"
                   onClick={() => updateQuantity(item._id, item.size, 0)}
                 />
               </div>
             );
           })
         ) : (
-          <div
-            className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
-          >
-            <div className="flex items-start gap-6">
-
-              <div>
-                <p className="text-xs sm:text-lg font-medium">
-                  Your cart is empty
-                </p>
-              </div>
-            </div>
+          <div className="py-4 border-t border-b text-gray-700">
+            <p className="text-xs sm:text-lg font-medium">Your cart is empty</p>
           </div>
         )}
+      </div>
+      <div className="flex justify-end my-20">
+        <div className="w-full sm:w-[450px]">
+          <CartTotal />
+          <div className="w-full text-end">
+            <button className="bg-red text-white text-sm my-8 px-8 py-3">
+              Proceed to checkout
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

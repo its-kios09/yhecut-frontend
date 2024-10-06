@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 import { products } from "../assets/assets";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const ShopContext = createContext();
 
@@ -11,6 +12,7 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(true);
   const [cartItems, setCartItems] = useState({});
+  const navigate = useNavigate();
 
   const addToCart = async (itemId, size) => {
     if (!size) {
@@ -46,7 +48,11 @@ const ShopContextProvider = (props) => {
             totalCount += cartItems[itemId][size];
           }
         } catch (error) {
-          console.error("Error counting cart items", error);
+           toast.error(`Error counting the items: ${error}`, {
+             style: {
+               fontFamily: '"Josefin Sans", sans-serif',
+             },
+           });
         }
       }
     }
@@ -69,6 +75,27 @@ const updateQuantity = (itemId, size, quantity) => {
   setCartItems(cartData);
 };
 
+const getCartTotal = () => {
+  let totalAmount = 0;
+  for(const items in cartItems){
+    let iteminfo = products.find((product) => product._id === items);
+    for(const item in cartItems[items]){
+      try {
+        if(cartItems[items][item] > 0){
+          totalAmount += iteminfo.price * cartItems[items][item];
+        }
+      } catch (error) {
+        toast.error(`Error getting total amount of the items: ${error}`, {
+          style: {
+            fontFamily: '"Josefin Sans", sans-serif',
+          },
+        });
+      }
+    }
+  }
+  return totalAmount;
+}
+
   const value = {
     products,
     currency,
@@ -77,6 +104,8 @@ const updateQuantity = (itemId, size, quantity) => {
     setSearch,
     showSearch,
     setShowSearch,
+    getCartTotal,
+    navigate,
     cartItems,
     addToCart,
     getCartCount,
