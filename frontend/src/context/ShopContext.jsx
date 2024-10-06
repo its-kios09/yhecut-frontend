@@ -19,33 +19,55 @@ const ShopContextProvider = (props) => {
           fontFamily: '"Josefin Sans", sans-serif',
         },
       });
+      return;
     }
 
     let cartData = structuredClone(cartItems);
-    if (cartData[itemId]) {
-      if (cartData[itemId][size]) {
-        cartData[itemId][size] += 1;
-      } else {
-        cartData[itemId] = 1;
-      }
+    if (!cartData[itemId]) {
+      cartData[itemId] = {};
     }
+
+    if (cartData[itemId][size]) {
+      cartData[itemId][size] += 1;
+    } else {
+      cartData[itemId][size] = 1;
+    }
+
     setCartItems(cartData);
   };
 
-  const getCartCount = () =>{
+  const getCartCount = () => {
     let totalCount = 0;
-    for(const items in cartItems){
-      for(const item in cartItems[item]){
+
+    for (const itemId in cartItems) {
+      for (const size in cartItems[itemId]) {
         try {
-          if (cartItems[item][item] > 0) {
-            totalCount += cartItems[items][item];
+          if (cartItems[itemId][size] > 0) {
+            totalCount += cartItems[itemId][size];
           }
         } catch (error) {
+          console.error("Error counting cart items", error);
         }
       }
     }
-      return totalCount;
+
+    return totalCount;
+  };
+
+const updateQuantity = (itemId, size, quantity) => {
+  let cartData = structuredClone(cartItems);
+
+  if (quantity === 0) {
+    delete cartData[itemId][size];
+    if (Object.keys(cartData[itemId]).length === 0) {
+      delete cartData[itemId];
+    }
+  } else {
+    cartData[itemId][size] = quantity;
   }
+
+  setCartItems(cartData);
+};
 
   const value = {
     products,
@@ -55,10 +77,11 @@ const ShopContextProvider = (props) => {
     setSearch,
     showSearch,
     setShowSearch,
+    cartItems,
     addToCart,
-    getCartCount
+    getCartCount,
+    updateQuantity,
   };
-
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
   );
