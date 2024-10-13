@@ -15,15 +15,19 @@ const Hero = () => {
             YHE CUT MEDIA
           </h1>
           <div className="flex items-center gap-2">
-            <p className="font-semibold text-sm md:text-basefont-josefin">
+            <p className="font-semibold text-sm md:text-base font-josefin">
               ORDER NOW
             </p>
             <p className="w-8 md:w-11 h-[1px] bg-[#414141]"></p>
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-end w-full sm:w-full">
-        <img alt="logo" src={logo} className="w-full sm:w-1/2 p-4" />
+      <div className="flex items-center justify-center w-full sm:w-full">
+        <img
+          alt="logo"
+          src={logo}
+          className="w-3/4 sm:w-1/2 lg:w-1/3 p-4 sm:p-0"
+        />
       </div>
     </div>
   );

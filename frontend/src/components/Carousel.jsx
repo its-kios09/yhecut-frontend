@@ -30,7 +30,8 @@ const Carousel = ({ slides, interval = 3000 }) => {
 
   return (
     <div className="relative w-full overflow-hidden">
-      <div className="relative h-90 md:h-80 lg:h-96 overflow-hidden">
+      {/* Carousel container with responsive height */}
+      <div className="relative h-auto md:h-80 lg:h-96 overflow-hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -51,7 +52,7 @@ const Carousel = ({ slides, interval = 3000 }) => {
                     {slide.description}
                   </p>
                   <button
-                    className="mt-4 bg-[#b83336] text-white px-4 py-2 rounded-full hover:bg-[#a12b29]"
+                    className="mt-4 bg-[#b83336] text-white px-4 py-2 rounded-full hover:bg-[#a12b29] transition-all"
                     onClick={() => {
                       window.location.href = "#";
                     }}
@@ -65,25 +66,28 @@ const Carousel = ({ slides, interval = 3000 }) => {
         </div>
       </div>
 
+      {/* Previous button */}
       <button
         onClick={goToPrevious}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white px-3 py-2 rounded-full hover:bg-opacity-75"
+        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white px-2 py-2 md:px-3 md:py-2 rounded-full hover:bg-opacity-75 transition-all"
       >
         ‹
       </button>
 
+      {/* Next button */}
       <button
         onClick={goToNext}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white px-3 py-2 rounded-full hover:bg-opacity-75"
+        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white px-2 py-2 md:px-3 md:py-2 rounded-full hover:bg-opacity-75 transition-all"
       >
         ›
       </button>
 
+      {/* Dots indicator */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
               index === currentIndex ? "bg-blue-500" : "bg-gray-300"
             }`}
             onClick={() => goToSlide(index)}
