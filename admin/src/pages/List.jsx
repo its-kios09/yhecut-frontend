@@ -22,7 +22,25 @@ const List = () => {
   useEffect(() => {
     fetchList();
   }, []);
-  return <div></div>;
+  return (
+    <>
+      <p className="mb-2"> All Products List</p>
+      <div>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+        <b></b>
+      </div>
+    </>
+  );
 };
 
 export default List;
