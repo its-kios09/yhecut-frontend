@@ -15,11 +15,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import logo from "./assets/logo.svg";
-
+import Banner from "./components/Banner";
 
 const App = () => {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+      <Banner />
       <ToastContainer />
       <Navbar />
       <SearchBar />
