@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Transaction from "./pages/Transaction.jsx";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+export const currency = "Ksh";
 
 const App = () => {
   const [token, setToken] = useState(
